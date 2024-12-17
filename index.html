@@ -21,6 +21,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
         }
 
         .fact-box {
@@ -29,6 +30,14 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             background-color: #f9f9f9;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
         }
 
         button {
@@ -44,11 +53,18 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Fun Fact Generator</h1>
+        <img id="venus-image" src="https://example.com/venus.jpg" alt="Venus">
         <div id="fact" class="fact-box">
             Click the button to see a fun fact!
         </div>
@@ -68,10 +84,29 @@
             "Venus is named after the Roman goddess of love and beauty."
         ];
 
+        const images = [
+            "https://example.com/venus1.jpg",
+            "https://example.com/venus2.jpg",
+            "https://example.com/venus3.jpg",
+            "https://example.com/venus4.jpg",
+            "https://example.com/venus5.jpg",
+            "https://example.com/venus6.jpg",
+            "https://example.com/venus7.jpg",
+            "https://example.com/venus8.jpg",
+            "https://example.com/venus9.jpg",
+            "https://example.com/venus10.jpg"
+        ];
+
         function generateFact() {
             const randomIndex = Math.floor(Math.random() * facts.length);
             const factElement = document.getElementById('fact');
+            const imageElement = document.getElementById('venus-image');
             factElement.textContent = facts[randomIndex];
+            imageElement.src = images[randomIndex];
+            factElement.style.opacity = 0;
+            setTimeout(() => {
+                factElement.style.opacity = 1;
+            }, 10);
         }
     </script>
 </body>
